@@ -40,34 +40,7 @@ public class LoginServices {
         }
     }
 
-    public boolean updateUserInfo(UserInfo userInfo) {
-        String userId = userInfo.getUserId();
 
-        if (userRepo.existsByUserId(userId)){
-            UserInfo existingUser = userRepo.findByUserId(userId);
-
-            // Update the fields (only those that are non-null or valid)
-            if (userInfo.getUserName() != null) {
-                existingUser.setUserName(userInfo.getUserName());
-            }
-            if (userInfo.getUserDob() != null) {
-                existingUser.setUserDob(userInfo.getUserDob());
-            }
-            if (userInfo.getGender() != null) {
-                existingUser.setGender(userInfo.getGender());
-            }
-            if (userInfo.getPhoneNumber() != null) {
-                existingUser.setPhoneNumber(userInfo.getPhoneNumber());
-            }
-
-            // Save the updated user back to the database
-            userRepo.save(existingUser);
-            return true;
-        }else {
-            return false;
-        }
-
-    }
 
     private String generateUniqueUserId() {
         String userId;

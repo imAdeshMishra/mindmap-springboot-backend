@@ -7,5 +7,4 @@ public interface UserRepo extends CrudRepository<UserInfo,Integer> {
     boolean existsByUserId(String userId);
     UserInfo findByUserId(String userId);
     boolean existsByEmailId(String emailId);
-
 }

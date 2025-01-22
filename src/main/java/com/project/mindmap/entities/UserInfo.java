@@ -1,7 +1,11 @@
 package com.project.mindmap.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user_info")
@@ -18,6 +22,12 @@ public class UserInfo {
     private String userName;
     private String userDob;
     private String gender;
+    private String maritalStatus;
+    private String userCategory;
+    @OneToMany(mappedBy = "userInfo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<UserRequirement> userRequirements = new ArrayList<>();
+
 
     @Email
     @Column(unique = true, nullable = false) // Ensure non-nullable unique field
@@ -31,14 +41,18 @@ public class UserInfo {
     }
 
     // Constructor for full details
-    public UserInfo(int id, String userName, String userDob, String gender, String emailId, String phoneNumber, String password) {
+    public UserInfo(int id,String userId, String userName, String userDob, String gender, String emailId, String phoneNumber, String password,String maritalStatus,String userCategory,List<UserRequirement> userRequirements) {
         this.id = id;
+        this.userId = userId;
         this.userName = userName;
         this.userDob = userDob;
         this.gender = gender;
         this.emailId = emailId;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.maritalStatus=maritalStatus;
+        this.userCategory=userCategory;
+        this.userRequirements=userRequirements;
     }
 
     // Constructor for creating a user with email and password only
@@ -68,6 +82,14 @@ public class UserInfo {
         return userName;
     }
 
+    public List<UserRequirement> getUserRequirements() {
+        return userRequirements;
+    }
+
+    public void setUserRequirements(List<UserRequirement> userRequirements) {
+        this.userRequirements = userRequirements;
+    }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -78,6 +100,14 @@ public class UserInfo {
 
     public void setUserDob(String userDob) {
         this.userDob = userDob;
+    }
+
+    public String getUserCategory() {
+        return userCategory;
+    }
+
+    public void setUserCategory(String userCategory) {
+        this.userCategory = userCategory;
     }
 
     public String getGender() {
@@ -94,6 +124,14 @@ public class UserInfo {
 
     public void setEmailId(String emailId) {
         this.emailId = emailId;
+    }
+
+    public String getMaritalStatus() {
+        return maritalStatus;
+    }
+
+    public void setMaritalStatus(String maritalStatus) {
+        this.maritalStatus = maritalStatus;
     }
 
     public String getPhoneNumber() {
