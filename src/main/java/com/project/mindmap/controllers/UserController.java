@@ -1,7 +1,7 @@
 package com.project.mindmap.controllers;
 
-import com.project.mindmap.entities.UserCredendials;
-import com.project.mindmap.entities.UserInfo;
+import com.project.mindmap.entities.user.UserCredendials;
+import com.project.mindmap.entities.user.UserInfo;
 import com.project.mindmap.services.LoginServices;
 import com.project.mindmap.services.OnboardingService;
 import com.project.mindmap.services.UserServices;
@@ -109,14 +109,14 @@ public class UserController {
                 response.put("userInfo",userInfo);
                 return ResponseEntity.status(HttpStatus.OK).body(response);
             }else {
-                System.out.println("user not created");
+                System.out.println("user not found");
                 response.put("status","failure");
                 response.put("message","user not found");
                 return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
             }
 
         }catch (Exception e){
-            System.out.println("user not found");
+            System.out.println("Internal Server Error");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

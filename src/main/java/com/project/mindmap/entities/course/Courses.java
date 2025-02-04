@@ -1,4 +1,4 @@
-package com.project.mindmap.entities;
+package com.project.mindmap.entities.course;
 
 
 import jakarta.persistence.*;

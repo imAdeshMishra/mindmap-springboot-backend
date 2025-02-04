@@ -1,8 +1,9 @@
 package com.project.mindmap.services;
 
 import com.project.mindmap.dao.UserRepo;
-import com.project.mindmap.entities.UserCredendials;
-import com.project.mindmap.entities.UserInfo;
+import com.project.mindmap.entities.user.UserCredendials;
+import com.project.mindmap.entities.user.UserInfo;
+import com.project.mindmap.helper.IdGenerationHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +19,7 @@ public class LoginServices {
 
         if (!userRepo.existsByEmailId(user.getEmail())){
 
-            String uniqueUserId = generateUniqueUserId(); // Generate a unique userId
+            String uniqueUserId = IdGenerationHelper.generateUniqueUserId(); // Generate a unique userId
             UserInfo newUser = new UserInfo(user.getEmail(), user.getPassword());
             newUser.setUserId(uniqueUserId); // Set userId
 
@@ -40,14 +41,4 @@ public class LoginServices {
         }
     }
 
-
-
-    private String generateUniqueUserId() {
-        String userId;
-        do {
-            int randomNum = (int) (Math.random() * 9000) + 1000; // Generate a 4-digit random number
-            userId = "user" + randomNum;
-        } while (userRepo.existsByUserId(userId)); // Check uniqueness
-        return userId;
-    }
 }

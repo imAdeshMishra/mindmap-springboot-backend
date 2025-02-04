@@ -1,7 +1,7 @@
 package com.project.mindmap.services;
 
 import com.project.mindmap.dao.UserRepo;
-import com.project.mindmap.entities.UserInfo;
+import com.project.mindmap.entities.user.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

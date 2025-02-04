@@ -1,4 +1,4 @@
-package com.project.mindmap.entities;
+package com.project.mindmap.entities.user;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;

@@ -1,4 +1,4 @@
-package com.project.mindmap.entities;
+package com.project.mindmap.entities.user;
 import jakarta.validation.constraints.Email;
 
 

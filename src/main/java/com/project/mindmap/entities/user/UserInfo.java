@@ -1,6 +1,7 @@
-package com.project.mindmap.entities;
+package com.project.mindmap.entities.user;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.project.mindmap.entities.therapist.TherapistReview;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 
@@ -14,9 +15,9 @@ public class UserInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     @SequenceGenerator(name = "user_sequence", sequenceName = "users_seq", allocationSize = 1)
-    private int id; // Follow Java naming conventions
+    private int id;
 
-    @Column(unique = true, nullable = false) // Ensure non-nullable unique field
+    @Column(unique = true, nullable = false)
     private String userId;
 
     private String userName;
@@ -30,18 +31,24 @@ public class UserInfo {
 
 
     @Email
-    @Column(unique = true, nullable = false) // Ensure non-nullable unique field
+    @Column(unique = true, nullable = false)
     private String emailId;
 
     private String phoneNumber;
     private String password;
+
+    @OneToMany(mappedBy = "userInfo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<TherapistReview> therapistReviews = new ArrayList<>();
+
+
 
     // Default constructor
     public UserInfo() {
     }
 
     // Constructor for full details
-    public UserInfo(int id,String userId, String userName, String userDob, String gender, String emailId, String phoneNumber, String password,String maritalStatus,String userCategory,List<UserRequirement> userRequirements) {
+    public UserInfo(int id,String userId, String userName, String userDob, String gender, String emailId, String phoneNumber, String password,String maritalStatus,String userCategory,List<UserRequirement> userRequirements,List<TherapistReview> therapistReviews) {
         this.id = id;
         this.userId = userId;
         this.userName = userName;
@@ -53,6 +60,7 @@ public class UserInfo {
         this.maritalStatus=maritalStatus;
         this.userCategory=userCategory;
         this.userRequirements=userRequirements;
+        this.therapistReviews=therapistReviews;
     }
 
     // Constructor for creating a user with email and password only
@@ -148,5 +156,13 @@ public class UserInfo {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<TherapistReview> getTherapistReviews() {
+        return therapistReviews;
+    }
+
+    public void setTherapistReviews(List<TherapistReview> therapistReviews) {
+        this.therapistReviews = therapistReviews;
     }
 }
