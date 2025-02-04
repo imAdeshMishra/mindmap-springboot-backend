@@ -7,4 +7,5 @@ import java.util.ArrayList;
 
 public interface TherapistRepo extends CrudRepository<TherapistInfo,Integer> {
     TherapistInfo findByTherapistId(String therapistId);
+    TherapistInfo findByEmailId(String emailId);
 }

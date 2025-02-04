@@ -1,12 +1,15 @@
 package com.project.mindmap.dao;
 
 import com.project.mindmap.entities.therapist.TherapistReview;
-import com.project.mindmap.entities.user.UserInfo;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public interface ReviewRepo extends CrudRepository<UserInfo,Integer> {
+public interface ReviewRepo extends CrudRepository<TherapistReview,Integer> {
     boolean existsByReviewId(String reviewId);
-    ArrayList<TherapistReview> existsByTherapistId(String therapistId);
+    // Find all reviews for a specific therapist
+    List<TherapistReview> findByTherapistInfo_TherapistId(String therapistId);
+
+    // Find all reviews given by a specific user
+    List<TherapistReview> findByUserInfo_UserId(String userId);
 }

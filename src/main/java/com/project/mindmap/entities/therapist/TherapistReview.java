@@ -10,7 +10,7 @@ public class TherapistReview {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     @SequenceGenerator(name = "user_sequence", sequenceName = "users_seq", allocationSize = 1)
-    private int id; // Follow Java naming conventions
+    private int id;
 
     @Column(unique = true, nullable = false) // Ensure non-nullable unique field
     private String reviewId;

@@ -35,7 +35,7 @@ public class UserInfo {
     private String emailId;
 
     private String phoneNumber;
-    private String password;
+//    private String password;
 
     @OneToMany(mappedBy = "userInfo", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -48,7 +48,7 @@ public class UserInfo {
     }
 
     // Constructor for full details
-    public UserInfo(int id,String userId, String userName, String userDob, String gender, String emailId, String phoneNumber, String password,String maritalStatus,String userCategory,List<UserRequirement> userRequirements,List<TherapistReview> therapistReviews) {
+    public UserInfo(int id,String userId, String userName, String userDob, String gender, String emailId, String phoneNumber,String maritalStatus,String userCategory,List<UserRequirement> userRequirements,List<TherapistReview> therapistReviews) {
         this.id = id;
         this.userId = userId;
         this.userName = userName;
@@ -56,17 +56,16 @@ public class UserInfo {
         this.gender = gender;
         this.emailId = emailId;
         this.phoneNumber = phoneNumber;
-        this.password = password;
         this.maritalStatus=maritalStatus;
         this.userCategory=userCategory;
         this.userRequirements=userRequirements;
         this.therapistReviews=therapistReviews;
     }
 
-    // Constructor for creating a user with email and password only
-    public UserInfo(String emailId, String password) {
+//     Constructor for creating a user with email and userId only
+    public UserInfo(String emailId, String userId) {
         this.emailId = emailId;
-        this.password = password;
+        this.userId = userId;
     }
 
     // Getters and setters
@@ -150,13 +149,13 @@ public class UserInfo {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
 
     public List<TherapistReview> getTherapistReviews() {
         return therapistReviews;

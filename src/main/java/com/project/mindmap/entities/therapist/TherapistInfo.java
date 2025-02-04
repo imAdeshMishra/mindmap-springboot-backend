@@ -16,8 +16,9 @@ public class TherapistInfo {
 
     @Column(unique = true, nullable = false)
     private String therapistId;
-
     private String name;
+    @Column(unique = true, nullable = false)
+    private String emailId;
     private String dob;
     private String gender;
     private String maritalStatus;
@@ -48,10 +49,11 @@ public class TherapistInfo {
     public TherapistInfo() {
     }
 
-    public TherapistInfo(int id, String therapistId, String name, String dob, String gender, String maritalStatus, String specialisation, String subSpecialisation, String aboutTherapist, ArrayList<TherapistLanguages> languages, ArrayList<TherapistAffiliations> affiliations, ArrayList<TherapistScopes> scopes, ArrayList<TherapistServices> services, ArrayList<TherapistReview> reviews) {
+    public TherapistInfo(int id, String therapistId, String name, String emailId, String dob, String gender, String maritalStatus, String specialisation, String subSpecialisation, String aboutTherapist, ArrayList<TherapistLanguages> languages, ArrayList<TherapistAffiliations> affiliations, ArrayList<TherapistScopes> scopes, ArrayList<TherapistServices> services, ArrayList<TherapistReview> reviews) {
         this.id = id;
         this.therapistId = therapistId;
         this.name = name;
+        this.emailId = emailId;
         this.dob = dob;
         this.gender = gender;
         this.maritalStatus = maritalStatus;
@@ -95,6 +97,14 @@ public class TherapistInfo {
 
     public void setDob(String dob) {
         this.dob = dob;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 
     public String getGender() {
